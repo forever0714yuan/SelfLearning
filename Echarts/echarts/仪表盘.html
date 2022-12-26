@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仪表盘</title>
+</head>
+<body>
+    <div id="main" style="width: 1200px; height: 600px;"></div>
+    <script src="echarts.js"></script>
+    <script>
+
+        var chartDom = document.getElementById('main');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        option = {
+            series: [
+                {
+                    type: 'gauge',
+                    data: [
+                        {
+                            value: 50,
+                            itemStyle:{
+                                color:'pink'
+                            }
+                        },
+                        {
+                            value:85,
+                            itemStyle:{
+                                color:'purple'
+                            }
+                        }
+                    ],
+                    min:20,
+                    max:90
+                }
+            ]
+        };
+
+        option && myChart.setOption(option);
+
+    </script>
+</body>
+</html>

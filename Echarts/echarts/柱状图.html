@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ECharts</title>
+    <!-- 引入刚刚下载的 ECharts 文件 -->
+    <script src="echarts.js"></script>
+</head>
+<body>
+    <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                show: true,
+                text: "ECharts大佬学习之路", // 标题文字
+                textStyle: {
+                    color: 'red' // 文字颜色
+                },
+                subtext: '小菜鸟',
+                link: 'http://www.itcast.cn',
+                borderWidth: 2, // 标题边框
+                borderColor: 'green', // 标题边框颜色
+                borderRadius: 5, // 标题边框圆角
+                left: 20, // 标题的位置
+                top: 0 // 标题的位置
+            },
+            tooltip: {
+                trigger: 'item',
+                triggerOn: 'mousemove',
+                axisPointer: {
+                    type: "shadow"
+                }
+                // formatter: function (params, ticket, callback) {
+                //     console.log(params);
+                //     // 1.第一个参数 params 是 formatter 需要的数据集。
+                //     return params[0].name + ':' + params[0].data
+                // }
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}, // 将图表保存为图片
+                    dataView: {}, // 是否显示出原始数据
+                    restore: {}, // 还原图表
+                    dataZoom: {}, // 数据缩放
+                    magicType: { // 将图表在不同类型之间切换,图表的转换需要数据的支持
+                        type: ['bar', 'line']
+                    },
+                    myTool1: {
+                        show: true,
+                        title: '自定义扩展方法1',
+                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                        onclick: function () {
+                            alert('myToolHandler1')
+                        }
+                    },
+                }
+            },
+            xAxis: {
+                type: "category",
+                data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+            },
+            yAxis: {
+                type: "value"
+            },
+            legend: {
+                data: ['销量', '利润'],
+                orient: "horizontal"
+            },
+            series: [
+                {
+                    name: '销量',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20],
+                    // markPoint: {
+                    //     data: [
+                    //         {
+                    //             type: 'max', name: '最大值'
+                    //         },
+                    //         {
+                    //             type: 'min', name: '最小值'
+                    //         }
+                    //     ]
+                    // },
+                    // markLine: {
+                    //     data: [
+                    //         {
+                    //             type: 'average', name: '平均值'
+                    //         }
+                    //     ]
+                    // },
+                    // label: {
+                    //     show: true, // 是否可见
+                    //     rotate: 0 // 旋转角度
+                    // },
+                    // barWidth: '30%' // 柱的宽度
+                },
+                {
+                    name: '利润',
+                    type: 'bar',
+                    data: [93, 60, 61, 82, 95, 70]
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

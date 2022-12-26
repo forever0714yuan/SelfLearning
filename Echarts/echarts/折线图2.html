@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>折线图</title>
+    <!-- 1.引入echarts -->
+    <script src="echarts.js"></script>
+</head>
+<body>
+    <!-- 2.设置盒子 -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script>
+        var mCharts = echarts.init(document.querySelector("#main"))
+        var xDataArr = ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        var yDataArr1 = [120, 132, 101, 134, 90, 230, 210]
+        var yDataArr2 = [20, 82, 191, 94, 290, 330, 310]
+        var option = {
+            grid: {
+                show: true,
+                // borderWidth: 10, // 网格(grid)的边框宽度
+                // borderColor: 'red', // 网格(grid)的边框颜色
+                // left: 200, // grid的位置
+                // top: 100,
+                // width: 600, // grid的大小
+                // height: 400,
+            },
+            xAxis: {
+                type: 'category',
+                data: xDataArr,
+                position: 'bottom'
+            },
+            yAxis: {
+                type: 'value',
+                scale: true,
+                position: 'left'
+            },
+            dataZoom: [
+                {
+                    type: 'slider',
+                    xAxisIndex: 0,
+                    start: 10,
+                    end: 80
+                },
+                {
+                    type: 'slider',
+                    yAxisIndex: 0,
+                }
+            ],
+            series: [
+                {
+                    type: 'line',
+                    data: yDataArr1,
+                    stack: 'all'
+                },
+                {
+                    type: 'line',
+                    data: yDataArr2,
+                    stack: 'all'
+                }
+            ]
+        }
+        mCharts.setOption(option)
+    </script>
+</body>
+</html>

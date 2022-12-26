@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>饼图</title>
+    <script src="echarts.js"></script>
+</head>
+<body>
+    <div id="main" style="width: 1200px; height: 600px;"></div>
+    <script>
+
+        var chartDom = document.getElementById('main');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        option = {
+            series: [
+                {
+                    type: 'pie',
+                    data: [
+                        { value: 1048, name: '衣服' },
+                        { value: 735, name: '裤子' },
+                        { value: 580, name: '内衣' },
+                        { value: 484, name: '鞋子' },
+                        { value: 300, name: '帽子' }
+                    ],
+                    radius: ['50%', '70%'],
+                    selectedMode: 'multiple',
+                    selectedOffset: 30,
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.data.name + '平台' + params.data.value + '元\n' +
+                                params.percent + '%'
+                        },
+                    },
+                    roseType: 'radius',
+                }
+            ]
+        };
+
+        option && myChart.setOption(option);
+
+    </script>
+</body>
+</html>

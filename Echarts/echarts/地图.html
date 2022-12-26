@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地图</title>
+    <!-- 1.引入Echarts和jquery -->
+    <script src="./echarts.js"></script>
+    <script src="./jquery-3.6.1.min.js"></script>
+</head>
+<body>
+    <!-- 2.ECharts最基本的代码结构 -->
+    <div id="main" style="width: 1200px; height: 600px;"></div>
+    <script>
+        const confirmedCount = [
+            {
+                "name": "安徽省",
+                "provinceCode": "AH",
+                "value": 1572
+            },
+            {
+                "name": "澳门特别行政区",
+                "provinceCode": "AM",
+                "value": 796
+            },
+            {
+                "name": "北京市",
+                "provinceCode": "BJ",
+                "value": 7922
+            },
+            {
+                "name": "重庆市",
+                "provinceCode": "CQ",
+                "value": 4551
+            },
+            {
+                "name": "福建省",
+                "provinceCode": "FJ",
+                "value": 5736
+            },
+            {
+                "name": "广东省",
+                "provinceCode": "GD",
+                "value": 28216
+            },
+            {
+                "name": "甘肃省",
+                "provinceCode": "GS",
+                "value": 1523
+            },
+            {
+                "name": "广西壮族自治区",
+                "provinceCode": "GX",
+                "value": 2364
+            },
+            {
+                "name": "贵州省",
+                "provinceCode": "GZ",
+                "value": 1136
+            },
+            {
+                "name": "湖北省",
+                "provinceCode": "HB",
+                "value": 68511
+            },
+            {
+                "name": "河北省",
+                "provinceCode": "HB-1",
+                "value": 2182
+            },
+            {
+                "name": "黑龙江省",
+                "provinceCode": "HLJ",
+                "value": 3904
+            },
+            {
+                "name": "湖南省",
+                "provinceCode": "HN",
+                "value": 1932
+            },
+            {
+                "name": "河南省",
+                "provinceCode": "HN-1",
+                "value": 6328
+            },
+            {
+                "name": "海南省",
+                "provinceCode": "HN-2",
+                "value": 9030
+            },
+            {
+                "name": "吉林省",
+                "provinceCode": "JL",
+                "value": 40356
+            },
+            {
+                "name": "江苏省",
+                "provinceCode": "JS",
+                "value": 3226
+            },
+            {
+                "name": "江西省",
+                "provinceCode": "JX",
+                "value": 1513
+            },
+            {
+                "name": "辽宁省",
+                "provinceCode": "LN",
+                "value": 2219
+            },
+            {
+                "name": "内蒙古自治区",
+                "provinceCode": "NMG",
+                "value": 6956
+            },
+            {
+                "name": "宁夏回族自治区",
+                "provinceCode": "NX",
+                "value": 227
+            },
+            {
+                "name": "青海省",
+                "provinceCode": "QH",
+                "value": 383
+            },
+            {
+                "name": "四川省",
+                "provinceCode": "SC",
+                "value": 8363
+            },
+            {
+                "name": "山东省",
+                "provinceCode": "SD",
+                "value": 3502
+            },
+            {
+                "name": "上海市",
+                "provinceCode": "SH",
+                "value": 64435
+            },
+            {
+                "name": "陕西省",
+                "provinceCode": "SX",
+                "value": 4749
+            },
+            {
+                "name": "山西省",
+                "provinceCode": "SX-1",
+                "value": 2873
+            },
+            {
+                "name": "天津市",
+                "provinceCode": "TJ",
+                "value": 2578
+            },
+            {
+                "name": "台湾省",
+                "provinceCode": "TW",
+                "value": 8210955
+            },
+            {
+                "name": "香港特别行政区",
+                "provinceCode": "XG",
+                "value": 452483
+            },
+            {
+                "name": "新疆维吾尔自治区",
+                "provinceCode": "XJ",
+                "value": 2414
+            },
+            {
+                "name": "西藏自治区",
+                "provinceCode": "XZ",
+                "value": 1498
+            },
+            {
+                "name": "云南省",
+                "provinceCode": "YN",
+                "value": 3430
+            },
+            {
+                "name": "浙江省",
+                "provinceCode": "ZJ",
+                "value": 3889
+            }
+        ]
+
+        const scatterData = [
+            {
+                value: [117.283042, 31.86119] // 散点的坐标, 使用的是经纬度
+            }
+        ]
+        //3.初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        //4．使用Ajax获取矢量地图数据
+        $.ajax('./china.json').then((res) => {
+            console.log(res);
+            //5．在Ajax的回调函数中注册地图矢量数据echarts.registerMap( ' chinaMap'，矢量地图数据)
+            echarts.registerMap('chinaMap', res)
+            //6．配置geo的type为'map ' , map为'chinaMap'
+            let option = {
+                geo: {
+                    type: 'map',
+                    map: "chinaMap",
+                    roam: true,//缩放
+                    label: {
+                        show: true,//显示文字
+                    }
+                },
+                series: [
+                    {
+                        type: 'map',
+                        data: confirmedCount,
+                        geoIndex: 0,
+                    },
+                    {
+                        type: 'effectScatter',
+                        data: scatterData,
+                        coordinateSystem: 'geo',
+                        geoIndex: 0,
+                        rippleEffect: {
+                            scale: 10
+                        },
+                        itemStyle: {
+                            color: "green",  // 控制散点的颜色
+                        }
+                    }
+                ],
+                visualMap: {
+                    min: 0, // 最小值
+                    max: 8000, // 最大值
+                    inRange: {
+                        color: ['white', 'red'] // 颜色的范围
+                    },
+                    calculable: true, // 是否显示拖拽用的手柄（手柄能拖拽调整选中范围）
+                    seriesIndex: 0
+                }
+            }
+
+            //7.使用制定的配置项和数据显示图表
+            myChart.setOption(option);
+
+        })
+    </script>
+</body>
+</html>

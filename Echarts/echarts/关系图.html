@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关系图</title>
+    <script src="./echarts.js"></script>
+</head>
+<body>
+    <div id="main" style="width: 500px; height: 600px;"></div>
+    <script>
+        const data = {
+            nodes: [
+                {
+                    name: "老大",
+                    value: 1,
+                    category: 4
+                },
+                {
+                    name: "老二",
+                    value: 2,
+                    category: 4
+                },
+                {
+                    name: "老三",
+                    value: 3,
+                    category: 4
+                }
+            ],
+            links: [
+                {
+                    source: 0,
+                    target: 1,
+
+                },
+                {
+                    source: 0,
+                    target: 2,
+                    symbol: ['none', 'arrow']//箭头
+                },
+            ]
+        };
+
+
+        var myChart = echarts.init(document.getElementById('main'));
+        option = {
+
+            series: [
+                {
+                    type: 'graph',
+                    layout: 'force',
+                    // animation: false,
+                    // animation: true,
+                    draggable: true, //节点是否可拖拽，只在使用力引导布局的时候有用。
+                    data: data.nodes.map(function (node, idx) {
+                        node.id = idx;
+                        return node;
+                    }),
+                    edgeLabel: { //是否显示线条
+                        show: true,
+                        fontSize: 20,
+                        color: 'red',
+                        formatter: function (x) {
+                            console.log(x);
+                            // return 'xxx'
+                        }
+                    },
+                    force: {
+                        edgeLength: 100, // 边的两个节点之间的距离
+                        repulsion: 2000, //节点之间的斥力因子。
+                        gravity: 0.5,//节点受到的向中心的引力因子。该值越大节点越往中心点靠拢。
+                    },
+                    symbolSize: 50,// 改变球的大小
+                    label: {
+                        show: true,
+                        fontSize: 20,//字体大小
+                        position: 'right',
+                        formatter: '{b}',
+                    },
+                    edges: data.links
+                }
+            ]
+        };
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
