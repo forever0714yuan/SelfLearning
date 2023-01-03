@@ -9,7 +9,7 @@ import axios from 'axios';
 import { ref, onMounted, markRaw, onBeforeUnmount } from 'vue';
 import { init, registerTheme, registerMap } from 'echarts';
 import { chalk2 } from '../assets/static/theme/chalk2';
-
+import { mapPage } from '../api/map';
 
 // 初始化图表
 const mapDom = ref(null);
@@ -41,8 +41,10 @@ const map = () => {
 
 // 获取数据
 const getData = () => {
-
-
+    mapPage().then(res => {
+        console.log(res);
+    })
+    updataCharts()
 }
 
 // 更新图表
