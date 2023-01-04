@@ -11,6 +11,7 @@ import { init, registerTheme, registerMap } from 'echarts';
 import { chalk2 } from '../assets/static/theme/chalk2';
 import { mapPage } from '../api/map';
 import { useClearEventListener } from '@/common/clearEvent';
+import { getProvinceMapInfo } from '@/utils/map_utils.js';
 // 初始化图表
 const mapDom = ref(null);
 const mapCharts = ref(null);
@@ -51,7 +52,43 @@ const map = () => {
       };
 
       initOption && mapCharts.value.setOption(initOption);
+
+      mapCharts.value.on('click', handleChange);
     });
+};
+
+const handleChange = (params) => {
+  const mapInfo = getProvinceMapInfo(params.name);
+  console.log(mapInfo);
+
+  axios.get('http://127.0.0.1:8999/' + mapInfo.path).then((res) => {
+    registerMap(mapInfo.key, res.data);
+    const changeOption = {
+      geo: {
+        map: mapInfo.key,
+      },
+    };
+    changeOption && mapCharts.value.setOption(changeOption);
+
+    mapCharts.value.off('click', handleChange);
+  });
+};
+
+const removeMap = () => {
+  mapCharts.value.getZr().on('dblclick', function (event) {
+    // 没有 target 意味着鼠标/指针不在任何一个图形元素上，它是从“空白处”触发的。
+    if (!event.target) {
+      // 点击在了空白处，做些什么。
+
+      const removeOption = {
+        geo: {
+          map: 'china',
+        },
+      };
+      removeOption && mapCharts.value.setOption(removeOption);
+      mapCharts.value.on('click', handleChange);
+    }
+  });
 };
 
 // 获取数据
@@ -126,6 +163,7 @@ onMounted(() => {
   map();
   getData();
   screenAdapter();
+  removeMap();
 });
 
 onBeforeUnmount(() => {});
