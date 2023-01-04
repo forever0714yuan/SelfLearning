@@ -167,6 +167,9 @@ const handleSelect = (index: string) => {
     height: 60px;
   }
 }
+:deep(.el-header) {
+  height: 40px;
+}
 // :deep(.el-main) {
 //   background-color: #fff;
 // }
