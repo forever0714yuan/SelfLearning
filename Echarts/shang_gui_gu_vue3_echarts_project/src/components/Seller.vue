@@ -8,32 +8,32 @@
 import { ref, onMounted, onBeforeUnmount, markRaw } from 'vue';
 import { sellerPage } from '../api/seller';
 import { init, registerTheme } from 'echarts';
-import { chalk2 } from '../assets/static/theme/chalk2'
+import { chalk2 } from '../assets/static/theme/chalk2';
 import { useClearEventListener } from '@/common/clearEvent';
 //初始化图表
 const sellerDom = ref(null);
 const sellerCharts = ref(null);
 const Seller = () => {
-  registerTheme('chalk2', chalk2)
+  registerTheme('chalk2', chalk2);
   sellerCharts.value = markRaw(init(sellerDom.value, 'chalk2'));
   // console.log(sellerCharts.value);
 
   // 初始化适配
   let initOption = {
     title: {
-      text: "▎商家销售统计",
+      text: '▎商家销售统计',
       textStyle: {
-        fontSize: 66
+        fontSize: 66,
       },
       left: 20,
-      top: 20
+      top: 20,
     },
     grid: {
       top: '20%',
       right: '3%',
       bottom: '6%',
       left: '3%',
-      containLabel: true,//坐标轴是包含坐标轴的文字
+      containLabel: true, //坐标轴是包含坐标轴的文字
     },
     xAxis: {
       type: 'value',
@@ -48,10 +48,10 @@ const Seller = () => {
         z: 2,
         lineStyle: {
           width: 66,
-          type: "solid",
-          color: "#2D3433",
-        }
-      }
+          type: 'solid',
+          color: '#2D3433',
+        },
+      },
     },
     series: [
       {
@@ -61,8 +61,8 @@ const Seller = () => {
           show: true,
           position: 'right',
           textStyle: {
-            color: 'white'
-          }
+            color: 'white',
+          },
         },
         itemStyle: {
           borderRadius: [0, 33, 33, 0],
@@ -72,27 +72,32 @@ const Seller = () => {
             y: 0,
             x2: 1,
             y2: 0,
-            colorStops: [{
-              offset: 0, color: '#5052EE' // 0% 处的颜色
-            }, {
-              offset: 1, color: '#AB6EE5' // 100% 处的颜色
-            }],
-            global: false // 缺省为 false
-          }
-        }
+            colorStops: [
+              {
+                offset: 0,
+                color: '#5052EE', // 0% 处的颜色
+              },
+              {
+                offset: 1,
+                color: '#AB6EE5', // 100% 处的颜色
+              },
+            ],
+            global: false, // 缺省为 false
+          },
+        },
       },
     ],
   };
 
-  initOption && sellerCharts.value.setOption(initOption)
+  initOption && sellerCharts.value.setOption(initOption);
 
   sellerCharts.value.on('mouseover', function () {
-    clearInterval(timer.value)
+    clearInterval(timer.value);
   });
 
   sellerCharts.value.on('mouseout', function () {
-    setIntervalData()
-  })
+    setIntervalData();
+  });
 };
 
 // 获取数据
@@ -112,16 +117,18 @@ const getData = () => {
     // 总页面数
     // console.log(data.value.length % 5);
     // console.log(data.value.length % 5);
-    totalPage.value = data.value.length % 5 === 0 ? (data.value.length / 5) : data.value.length / 5 + 1;
+    totalPage.value =
+      data.value.length % 5 === 0
+        ? data.value.length / 5
+        : data.value.length / 5 + 1;
     updataCharts();
     // 开启定时器
-    setIntervalData()
+    setIntervalData();
   });
 };
 
 // 更新图表
 const updataCharts = () => {
-
   // 分页展示
   const start = (currentPage.value - 1) * 5;
   const end = currentPage.value * 5;
@@ -145,10 +152,10 @@ const updataCharts = () => {
 };
 
 // 开启定时器循环播放
-const timer = ref(null)
+const timer = ref(null);
 const setIntervalData = () => {
   if (timer.value) {
-    clearInterval(timer.value)
+    clearInterval(timer.value);
   }
 
   timer.value = setInterval(() => {
@@ -159,53 +166,51 @@ const setIntervalData = () => {
     }
     updataCharts();
   }, 3000);
-}
+};
 
 // 分辨率适配
 const screenAdapter = () => {
-  const titleFontSize = sellerDom.value.offsetWidth / 100 * 3.6;
+  const titleFontSize = (sellerDom.value.offsetWidth / 100) * 3.6;
 
   const adapterOption = {
     title: {
       textStyle: {
-        fontSize: titleFontSize
+        fontSize: titleFontSize,
       },
     },
     tooltip: {
       axisPointer: {
         lineStyle: {
           width: titleFontSize,
-        }
-      }
+        },
+      },
     },
     series: [
       {
         barWidth: titleFontSize,
         itemStyle: {
           borderRadius: [0, titleFontSize / 2, titleFontSize / 2, 0],
-        }
+        },
       },
     ],
   };
 
-  adapterOption && sellerCharts.value.setOption(adapterOption)
-  sellerCharts.value.resize()
-}
+  adapterOption && sellerCharts.value.setOption(adapterOption);
+  sellerCharts.value.resize();
+};
 // 监听事件和销毁事件
-useClearEventListener(window, 'resize', screenAdapter)
+useClearEventListener(window, 'resize', screenAdapter);
 
 onMounted(() => {
   Seller();
   getData();
-  screenAdapter()
+  screenAdapter();
   // updataCharts();
 });
 
 onBeforeUnmount(() => {
-  clearInterval(timer.value)
+  clearInterval(timer.value);
 });
 </script>
 
-<style lang="less" scoped>
-
-</style>
+<style lang="less" scoped></style>

@@ -1,7 +1,7 @@
 <template>
-    <div class="mappage">
-        <Map></Map>
-    </div>
+  <div class="mappage">
+    <Map></Map>
+  </div>
 </template>
 
 <script setup>
@@ -10,8 +10,8 @@ import Map from '@/components/Map.vue';
 
 <style lang="less" scoped>
 .mappage {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 </style>
