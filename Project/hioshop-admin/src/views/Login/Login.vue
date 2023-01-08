@@ -29,6 +29,7 @@
               type="primary"
               style="width: 100%"
               @click="submitForm(ruleFormRef)"
+              @keyup.enter="submitForm(ruleFormRef)"
               >登录</el-button
             >
           </el-form-item>
@@ -40,9 +41,10 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import type { FormInstance, FormRules } from 'element-plus';
+import { setStorage } from '@/utils/storage';
+import type { FormInstance } from 'element-plus';
 import { ElMessage } from 'element-plus';
-import { loginFrom } from '@/api/loginAPI';
+import { loginFrom } from '@/api/login.js';
 
 const ruleFormRef = ref<FormInstance>();
 
@@ -75,23 +77,24 @@ const validatePass = (rule: any, value: any, callback: any) => {
     callback();
   }
 };
-// 接口
-interface RuleForm {
-  username: string;
-  password: string;
-}
-// 校验项目
-const ruleForm: RuleForm = reactive({
-  username: '',
-  password: '',
-});
-
 const rules = reactive({
   username: [{ validator: validateUsername, trigger: 'blur' }],
   password: [{ validator: validatePass, trigger: 'blur' }],
 });
 
-const allData = ref([]);
+// 输入数据的接口
+interface RuleForm {
+  username: string;
+  password: string;
+}
+// 输入数据的实现
+const ruleForm: RuleForm = reactive({
+  username: '',
+  password: '',
+});
+
+// const allData = ref([]);
+// 登录
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   formEl.validate(async (valid: any) => {
@@ -99,26 +102,25 @@ const submitForm = (formEl: FormInstance | undefined) => {
       console.log(valid);
       console.log(ruleForm);
 
-      // const res = await loginFrom({username: ruleForm.username,password: ruleForm.password,});
       const res = await loginFrom(ruleForm);
       console.log(res);
 
-      // const token = res.data.data.token;
-      // const info = res.data.data.userInfo;
-      // setStore('token', token);
-      // setStore('userInfo', info);
-      // router.replace('/');
-      // ElMessage({
-      //   message: '登录成功',
-      //   type: 'success',
-      //   duration: 1500,
-      // });
+      const { token, userInfo } = res;
+
+      setStorage('token', token);
+      setStorage('userInfo', userInfo);
+      router.push('/');
+      ElMessage({
+        message: '登录成功',
+        type: 'success',
+        duration: 1500,
+      });
     } else {
-      // ElMessage({
-      //   message: '登录失败',
-      //   type: 'error',
-      //   duration: 1500,
-      // });
+      ElMessage({
+        message: '登录失败',
+        type: 'error',
+        duration: 1500,
+      });
       return false;
     }
   });

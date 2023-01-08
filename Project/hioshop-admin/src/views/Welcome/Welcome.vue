@@ -15,15 +15,21 @@
       </div>
       <div class="header">
         <div class="red common">
-          <span class="order-ship-count text-number">3</span>
+          <span class="order-ship-count text-number">
+            {{ allData.orderToDelivery }}
+          </span>
           <a href="#" class="order-shipp text-des">待发货订单</a>
         </div>
         <div class="green common">
-          <span class="on-shelf-count text-number">48</span>
+          <span class="on-shelf-count text-number">
+            {{ allData.goodsOnsale }}
+          </span>
           <a href="#" class="on-shelf text-des">上架中的商品</a>
         </div>
         <div class="black common">
-          <span class="user-count text-number">51</span>
+          <span class="user-count text-number">
+            {{ allData.user }}
+          </span>
           <a href="#" class="user-name text-des">总用户数</a>
         </div>
       </div>
@@ -45,11 +51,11 @@
                 </template>
                 <div class="text item">
                   <span>新增</span>
-                  <span class="count">0</span>
+                  <span class="count">{{ mainData.newUser }}</span>
                 </div>
                 <div class="text item">
                   <span>老顾客</span>
-                  <span class="count">0</span>
+                  <span class="count">{{ mainData.oldUser }}</span>
                 </div>
               </el-card>
               <el-card class="box-card">
@@ -61,11 +67,13 @@
                 </template>
                 <div class="text item">
                   <span>加入购物车</span>
-                  <span class="count">0</span>
+                  <span class="count">{{ mainData.addCart }}</span>
                 </div>
                 <div class="text item">
                   <span>提交订单数/金额</span>
-                  <span class="count">0/0</span>
+                  <span class="count"
+                    >{{ mainData.addOrderNum }}/{{ mainData.addOrderSum }}</span
+                  >
                 </div>
               </el-card>
               <el-card class="box-card">
@@ -77,11 +85,11 @@
                 </template>
                 <div class="text item">
                   <span>成交订单数</span>
-                  <span class="count">0</span>
+                  <span class="count">{{ mainData.payOrderNum }}</span>
                 </div>
                 <div class="text item">
                   <span>成交金额</span>
-                  <span class="count">0</span>
+                  <span class="count">{{ mainData.payOrderSum }}</span>
                 </div>
               </el-card>
             </div>
@@ -133,27 +141,374 @@
               <!-- </div> -->
             </div>
           </el-tab-pane>
-          <el-tab-pane label="昨天" name="yesterday">Config</el-tab-pane>
-          <el-tab-pane label="前7天" name="last-seven">Role</el-tab-pane>
-          <el-tab-pane label="前30天" name="last-thirty">Task</el-tab-pane>
+          <el-tab-pane label="昨天" name="yesterday">
+            <div class="today-card">
+              <el-card class="box-card">
+                <template #header>
+                  <div class="card-header">
+                    <span>顾客</span>
+                    <el-button class="button" type="primary">查看</el-button>
+                  </div>
+                </template>
+                <div class="text item">
+                  <span>新增</span>
+                  <span class="count">{{ mainData.newUser }}</span>
+                </div>
+                <div class="text item">
+                  <span>老顾客</span>
+                  <span class="count">{{ mainData.oldUser }}</span>
+                </div>
+              </el-card>
+              <el-card class="box-card">
+                <template #header>
+                  <div class="card-header">
+                    <span>下单</span>
+                    <!-- <el-button class="button" text>Operation button</el-button> -->
+                  </div>
+                </template>
+                <div class="text item">
+                  <span>加入购物车</span>
+                  <span class="count">{{ mainData.addCart }}</span>
+                </div>
+                <div class="text item">
+                  <span>提交订单数/金额</span>
+                  <span class="count"
+                    >{{ mainData.addOrderNum }}/{{ mainData.addOrderSum }}</span
+                  >
+                </div>
+              </el-card>
+              <el-card class="box-card">
+                <template #header>
+                  <div class="card-header">
+                    <span>支付</span>
+                    <!-- <el-button class="button" text>Operation button</el-button> -->
+                  </div>
+                </template>
+                <div class="text item">
+                  <span>成交订单数</span>
+                  <span class="count">{{ mainData.payOrderNum }}</span>
+                </div>
+                <div class="text item">
+                  <span>成交金额</span>
+                  <span class="count">{{ mainData.payOrderSum }}</span>
+                </div>
+              </el-card>
+            </div>
+            <el-divider />
+            <div class="today-bottom">
+              <!-- <div class="bottom-contain"> -->
+              <el-card class="box-card">
+                <div class="text item">
+                  <span>客单价</span>
+                  <span class="count">0</span>
+                </div>
+                <div class="text-deal item item-deal">
+                  <span>成交金额/成交订单数</span>
+                  <span class="count">0</span>
+                </div>
+              </el-card>
+              <el-card class="box-card">
+                <div class="text item">
+                  <span>下单转化率</span>
+                  <span class="count">0</span>
+                </div>
+                <div class="text-deal item item-deal">
+                  <span>下单人数/访问人数</span>
+                  <span class="count">0</span>
+                </div>
+              </el-card>
+              <!-- </div> -->
+              <!-- <div class="bottom-contain"> -->
+              <el-card class="box-card">
+                <div class="text item">
+                  <span>下单-支付转化率</span>
+                  <span class="count">0</span>
+                </div>
+                <div class="text-deal item item-deal">
+                  <span>支付人数/下单人数</span>
+                  <span class="count">0</span>
+                </div>
+              </el-card>
+              <el-card class="box-card">
+                <div class="text item">
+                  <span>支付转化率</span>
+                  <span class="count">0</span>
+                </div>
+                <div class="text-deal item item-deal">
+                  <span>支付人数/访问人数</span>
+                  <span class="count">0</span>
+                </div>
+              </el-card>
+              <!-- </div> -->
+            </div>
+          </el-tab-pane>
+          <el-tab-pane label="前7天" name="last-seven"
+            ><div class="today-card">
+              <el-card class="box-card">
+                <template #header>
+                  <div class="card-header">
+                    <span>顾客</span>
+                    <el-button class="button" type="primary">查看</el-button>
+                  </div>
+                </template>
+                <div class="text item">
+                  <span>新增</span>
+                  <span class="count">{{ mainData.newUser }}</span>
+                </div>
+                <div class="text item">
+                  <span>老顾客</span>
+                  <span class="count">{{ mainData.oldUser }}</span>
+                </div>
+              </el-card>
+              <el-card class="box-card">
+                <template #header>
+                  <div class="card-header">
+                    <span>下单</span>
+                    <!-- <el-button class="button" text>Operation button</el-button> -->
+                  </div>
+                </template>
+                <div class="text item">
+                  <span>加入购物车</span>
+                  <span class="count">{{ mainData.addCart }}</span>
+                </div>
+                <div class="text item">
+                  <span>提交订单数/金额</span>
+                  <span class="count"
+                    >{{ mainData.addOrderNum }}/{{ mainData.addOrderSum }}</span
+                  >
+                </div>
+              </el-card>
+              <el-card class="box-card">
+                <template #header>
+                  <div class="card-header">
+                    <span>支付</span>
+                    <!-- <el-button class="button" text>Operation button</el-button> -->
+                  </div>
+                </template>
+                <div class="text item">
+                  <span>成交订单数</span>
+                  <span class="count">{{ mainData.payOrderNum }}</span>
+                </div>
+                <div class="text item">
+                  <span>成交金额</span>
+                  <span class="count">{{ mainData.payOrderSum }}</span>
+                </div>
+              </el-card>
+            </div>
+            <el-divider />
+            <div class="today-bottom">
+              <!-- <div class="bottom-contain"> -->
+              <el-card class="box-card">
+                <div class="text item">
+                  <span>客单价</span>
+                  <span class="count">0</span>
+                </div>
+                <div class="text-deal item item-deal">
+                  <span>成交金额/成交订单数</span>
+                  <span class="count">0</span>
+                </div>
+              </el-card>
+              <el-card class="box-card">
+                <div class="text item">
+                  <span>下单转化率</span>
+                  <span class="count">0</span>
+                </div>
+                <div class="text-deal item item-deal">
+                  <span>下单人数/访问人数</span>
+                  <span class="count">0</span>
+                </div>
+              </el-card>
+              <!-- </div> -->
+              <!-- <div class="bottom-contain"> -->
+              <el-card class="box-card">
+                <div class="text item">
+                  <span>下单-支付转化率</span>
+                  <span class="count">0</span>
+                </div>
+                <div class="text-deal item item-deal">
+                  <span>支付人数/下单人数</span>
+                  <span class="count">0</span>
+                </div>
+              </el-card>
+              <el-card class="box-card">
+                <div class="text item">
+                  <span>支付转化率</span>
+                  <span class="count">0</span>
+                </div>
+                <div class="text-deal item item-deal">
+                  <span>支付人数/访问人数</span>
+                  <span class="count">0</span>
+                </div>
+              </el-card>
+              <!-- </div> -->
+            </div>
+          </el-tab-pane>
+          <el-tab-pane label="前30天" name="last-thirty">
+            <div class="today-card">
+              <el-card class="box-card">
+                <template #header>
+                  <div class="card-header">
+                    <span>顾客</span>
+                    <el-button class="button" type="primary">查看</el-button>
+                  </div>
+                </template>
+                <div class="text item">
+                  <span>新增</span>
+                  <span class="count">{{ mainData.newUser }}</span>
+                </div>
+                <div class="text item">
+                  <span>老顾客</span>
+                  <span class="count">{{ mainData.oldUser }}</span>
+                </div>
+              </el-card>
+              <el-card class="box-card">
+                <template #header>
+                  <div class="card-header">
+                    <span>下单</span>
+                    <!-- <el-button class="button" text>Operation button</el-button> -->
+                  </div>
+                </template>
+                <div class="text item">
+                  <span>加入购物车</span>
+                  <span class="count">{{ mainData.addCart }}</span>
+                </div>
+                <div class="text item">
+                  <span>提交订单数/金额</span>
+                  <span class="count"
+                    >{{ mainData.addOrderNum }}/{{ mainData.addOrderSum }}</span
+                  >
+                </div>
+              </el-card>
+              <el-card class="box-card">
+                <template #header>
+                  <div class="card-header">
+                    <span>支付</span>
+                    <!-- <el-button class="button" text>Operation button</el-button> -->
+                  </div>
+                </template>
+                <div class="text item">
+                  <span>成交订单数</span>
+                  <span class="count">{{ mainData.payOrderNum }}</span>
+                </div>
+                <div class="text item">
+                  <span>成交金额</span>
+                  <span class="count">{{ mainData.payOrderSum }}</span>
+                </div>
+              </el-card>
+            </div>
+            <el-divider />
+            <div class="today-bottom">
+              <!-- <div class="bottom-contain"> -->
+              <el-card class="box-card">
+                <div class="text item">
+                  <span>客单价</span>
+                  <span class="count">0</span>
+                </div>
+                <div class="text-deal item item-deal">
+                  <span>成交金额/成交订单数</span>
+                  <span class="count">0</span>
+                </div>
+              </el-card>
+              <el-card class="box-card">
+                <div class="text item">
+                  <span>下单转化率</span>
+                  <span class="count">0</span>
+                </div>
+                <div class="text-deal item item-deal">
+                  <span>下单人数/访问人数</span>
+                  <span class="count">0</span>
+                </div>
+              </el-card>
+              <!-- </div> -->
+              <!-- <div class="bottom-contain"> -->
+              <el-card class="box-card">
+                <div class="text item">
+                  <span>下单-支付转化率</span>
+                  <span class="count">0</span>
+                </div>
+                <div class="text-deal item item-deal">
+                  <span>支付人数/下单人数</span>
+                  <span class="count">0</span>
+                </div>
+              </el-card>
+              <el-card class="box-card">
+                <div class="text item">
+                  <span>支付转化率</span>
+                  <span class="count">0</span>
+                </div>
+                <div class="text-deal item item-deal">
+                  <span>支付人数/访问人数</span>
+                  <span class="count">0</span>
+                </div>
+              </el-card>
+              <!-- </div> -->
+            </div>
+          </el-tab-pane>
         </el-tabs>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, reactive } from 'vue';
+import type { Ref } from 'vue';
 import type { TabsPaneContext } from 'element-plus';
-import { getWelCome } from '@/api/welcomeAPI';
+import { getWelCome, getMain } from '@/api/welcome.js';
+import axios from 'axios';
+
+// 获取数据
+interface AllData {
+  orderToDelivery?: number;
+  goodsOnsale?: number;
+  user?: number;
+  timestamp?: number;
+}
+
+let allData: AllData = reactive({});
+
+const getInfo = async () => {
+  // console.log(getWelCome());
+  // getWelCome().then((res) => {
+  //   // console.log(res);
+  //   if (res.errno === 0) {
+  //     Object.assign(allData, res.data);
+  //   }
+  // });
+  const res = await getWelCome();
+  if (res.errno === 0) {
+    Object.assign(allData, res.data);
+  }
+};
 
 const activeName = ref('first');
-
 const handleClick = (tab: TabsPaneContext, event: Event) => {
-  console.log(tab, event);
+  // console.log(tab, event);
+  const index = tab.index;
+  // console.log(index);
+  getMainData(index);
 };
-// 获取数据
-const getInfo = () => {
-  getWelCome();
+
+// 切换下单时间返回的函数
+interface GetMainData {
+  addCart?: number;
+  addOrderNum?: number;
+  addOrderSum?: number;
+  newData?: Array<[]>;
+  newUser?: number;
+  oldData?: Array<[]>;
+  oldUser?: number;
+  payOrderNum?: number;
+  payOrderSum?: number;
+}
+
+const mainData: GetMainData = reactive({});
+
+const getMainData = async (index: string | undefined) => {
+  const res = await getMain({ pindex: index });
+  if (res.errno === 0) {
+    Object.assign(mainData, res.data);
+  }
+  console.log(mainData);
 };
 onMounted(() => {
   getInfo();

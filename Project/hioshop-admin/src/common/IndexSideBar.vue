@@ -122,7 +122,12 @@
       </el-aside>
       <el-container>
         <el-header>
-          <Header>{{ Name }}</Header>
+          <Header class="header">
+            <span>{{ Name }}</span>
+            <el-button type="primary" v-if="route.fullPath === '/main/goods'"
+              >添加商品</el-button
+            >
+          </Header>
         </el-header>
         <el-main>
           <RouterView></RouterView>
@@ -169,6 +174,11 @@ const handleSelect = (index: string) => {
 }
 :deep(.el-header) {
   height: 40px;
+}
+.header {
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
 }
 // :deep(.el-main) {
 //   background-color: #fff;

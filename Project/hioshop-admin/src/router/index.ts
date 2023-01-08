@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import IndexSideBar from '@/common/IndexSideBar.vue';
-
+import { getStorage } from '@/utils/storage'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -99,12 +99,17 @@ const router = createRouter({
   routes
 })
 
+// 路由守卫
+router.beforeEach((to, from, next) => {
+  // console.log(to);
+  const isLogin: boolean = getStorage('token') ? true : false;
+  // console.log(isLogin);
 
-// router.beforeEach((to, from, next) => {
-//   if (from.fullPath == "/") {
-//     // addDynamicMenuAndRoutes()
-//   }
-//   next()
-// })
+  if (to.fullPath === '/login') {
+    next()
+  } else {
+    isLogin ? next() : next({ path: '/login' })
+  }
+})
 
 export default router
