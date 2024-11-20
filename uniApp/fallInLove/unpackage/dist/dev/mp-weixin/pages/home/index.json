@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "uni-app",
+  "usingComponents": {
+    "uv-swiper": "../../uni_modules/uv-swiper/components/uv-swiper/uv-swiper",
+    "uv-tags": "../../uni_modules/uv-tags/components/uv-tags/uv-tags",
+    "uv-tabbar-item": "../../uni_modules/uv-tabbar/components/uv-tabbar-item/uv-tabbar-item",
+    "uv-tabbar": "../../uni_modules/uv-tabbar/components/uv-tabbar/uv-tabbar"
+  }
+}
