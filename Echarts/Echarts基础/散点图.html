@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>散点图</title>
+    <script src="echarts.js"></script>
+</head>
+<body>
+    <div id="main" style="width: 1200px; height: 600px;"></div>
+    <script>
+        var chartDom = document.getElementById('main');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        option = {
+            xAxis: {
+                scale: true
+            },
+            yAxis: {
+                scale: true
+            },
+            series: [
+                {
+                    data: [
+                        [10.0, 8.04],
+                        [8.07, 6.95],
+                        [13.0, 7.58],
+                        [9.05, 8.81],
+                        [11.0, 8.33],
+                        [14.0, 7.66],
+                        [13.4, 6.81],
+                        [10.0, 6.33],
+                        [14.0, 8.96],
+                        [12.5, 6.82],
+                        [9.15, 7.2],
+                        [11.5, 7.2],
+                        [3.03, 4.23],
+                        [12.2, 7.83],
+                        [2.02, 4.47],
+                        [1.05, 3.33],
+                        [4.05, 4.96],
+                        [6.03, 7.24],
+                        [12.0, 6.26],
+                        [12.0, 8.84],
+                        [7.08, 5.82],
+                        [5.02, 5.68]
+                    ],
+                    type: 'effectScatter',
+                    // symbolSize: 25,
+                    symbolSize: function (params) {
+                        if (params[0] > 6) {
+                            return 25;
+                        } else {
+                            return 10;
+                        }
+                    },
+                    rippleEffect: {
+                        scale: 3
+                    },
+                    showEffectOn: 'emphasis',
+                    // itemStyle: {
+                    //     color: "green"
+                    // }
+                    itemStyle: {
+                        color: function (params) {
+                            console.log(params);
+                            if (params.data[0] > 6) {
+                                return 'red'
+                            } else {
+                                return 'green'
+                            }
+                        },
+                    }
+                }
+            ]
+        };
+
+        option && myChart.setOption(option);
+
+    </script>
+</body>
+</html>

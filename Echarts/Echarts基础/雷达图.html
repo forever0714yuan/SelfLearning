@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雷达图</title>
+    <script src="./echarts.js"></script>
+    <script src="./jquery-3.6.1.min.js"></script>
+</head>
+<body>
+    <div id="main" style="width: 1000px; height: 600px;"></div>
+
+    <script>
+
+        var chartDom = document.querySelector('#main');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        option = {
+            // title: {
+            //     text: 'Basic Radar Chart'
+            // },
+            // legend: {
+            //     data: ['Allocated Budget', 'Actual Spending']
+            // },
+            //雷达图坐标系组 也就是背景的圈
+            radar: {
+
+                shape: 'circle',
+                // 雷达图的指示器，用来指定雷达图中的多个变量（维度
+                indicator: [
+                    // name 就是每个点的名称 max 是每个点的最大值 color 设置name 的颜色
+                    { name: '衣服', max: 6500 },
+                    { name: '裤子', max: 16000 },
+                    { name: '鞋子', max: 30000 },
+                    { name: '帽子', max: 38000 },
+                    { name: '手套', max: 52000 },
+                    { name: '耳罩', max: 25000 }
+                ]
+            },
+            // 视觉映射组件 也就是右边的竖线
+            // visualMap: {
+            //     type: 'continuous', // 连续的竖线  piecewise 分段的竖线
+            //     top: 'middle', // visualMap 组件离容器上侧的距离。
+            //     right: 10, // visualMap 组件离容器右侧的距离。
+            //     // color: ['red', 'yellow'], 从大到小
+            //     inRange: {
+            //         color: ['#121122', 'rgba(3,4,5,0.4)', 'red'] // 从小到大
+            //         // symbolSize: [30, 100]
+            //     },
+            //     calculable: true // 是否显示竖线上拖拽用的手柄（手柄能拖拽调整选中范围）
+            // },
+            series: [
+                {
+                    // name: 'Budget vs spending',
+                    type: 'radar',
+                    label: {
+                        show: true
+                    },
+                    areaStyle: {},
+                    data: [
+                        {
+                            value: [4200, 3000, 20000, 35000, 50000, 18000],
+                            name: '阿迪达斯'
+                        },
+                        {
+                            value: [5000, 14000, 28000, 26000, 42000, 21000],
+                            name: '鸿星尔克'
+                        }
+                    ]
+                }
+            ]
+        };
+
+        option && myChart.setOption(option);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>折线图</title>
+    <!-- 1.引入echarts -->
+    <script src="echarts.js"></script>
+</head>
+<body>
+    <!-- 2.设置盒子 -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script>
+        // 3.初始化实例
+        var chartDom = document.getElementById('main');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        // 5.配置项
+        option = {
+            xAxis: {
+                type: 'category',
+                data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月'],
+                boundaryGap: false
+            },
+            yAxis: {
+                type: 'value',
+                scale: true
+            },
+            series: [
+                {
+                    data: [3005, 3003, 3001, 3002, 3009, 3007, 3003],
+                    type: 'line',
+                    markPoint: {
+                        data: [
+                            {
+                                type: 'max',
+                                name: '最大值'
+                            }, {
+                                type: 'min',
+                                name: '最小值'
+                            }
+                        ]
+                    },
+                    markLine: {
+                        data: [
+                            {
+                                type: 'average',
+                                name: '平均值'
+                            }
+                        ]
+                    },
+                    markArea: {
+                        data: [
+                            [
+                                {
+                                    xAxis: '1月'
+                                }, {
+                                    xAxis: '2月'
+                                }
+                            ],
+                            [
+                                {
+                                    xAxis: '6月'
+                                }, {
+                                    xAxis: '7月'
+                                }
+                            ]
+                        ]
+                    },
+                    smooth: true,
+                    lineStyle: {
+                        color: 'green',
+                        type: 'dashed' // 可选值还有 dotted solid
+                    },
+                    areaStyle: {
+                        color: 'pink'
+                    }
+                }
+            ]
+        };
+        // 6.将配置设置给Echarts实例
+        option && myChart.setOption(option);
+
+    </script>
+</body>
+</html>

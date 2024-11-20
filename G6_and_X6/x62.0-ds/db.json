@@ -1,0 +1,703 @@
+{
+  "nodes": [
+    {
+      "nodesRelations": [
+        {
+          "id": "daf289b7-b083-4c5b-abff-26010e4b04a4",
+          "shape": "custom-vue-node",
+          "ports": {
+            "groups": {
+              "in": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "-2%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              },
+              "out": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "102%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              }
+            },
+            "items": [
+              {
+                "id": "port1",
+                "group": "in"
+              },
+              {
+                "id": "port2",
+                "group": "out"
+              }
+            ]
+          },
+          "width": 320,
+          "height": 200,
+          "x": 170,
+          "y": 240
+        },
+        {
+          "id": "fa140053-07d1-4b13-b411-95df39f88710",
+          "shape": "custom-vue-node",
+          "ports": {
+            "groups": {
+              "in": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "-2%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              },
+              "out": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "102%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              }
+            },
+            "items": [
+              {
+                "id": "port1",
+                "group": "in"
+              },
+              {
+                "id": "port2",
+                "group": "out"
+              }
+            ]
+          },
+          "width": 320,
+          "height": 200,
+          "x": 170,
+          "y": 520
+        },
+        {
+          "id": "a0f69879-94f7-40fb-ace5-4b31319d9035",
+          "shape": "custom-vue-node",
+          "ports": {
+            "groups": {
+              "in": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "-2%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              },
+              "out": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "102%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              }
+            },
+            "items": [
+              {
+                "id": "port1",
+                "group": "in"
+              },
+              {
+                "id": "port2",
+                "group": "out"
+              }
+            ]
+          },
+          "width": 320,
+          "height": 200,
+          "x": 660,
+          "y": 455
+        },
+        {
+          "id": "832ec80d-de90-4613-98c7-594ae43fd990",
+          "shape": "custom-vue-node",
+          "ports": {
+            "groups": {
+              "in": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "-2%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              },
+              "out": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "102%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              }
+            },
+            "items": [
+              {
+                "id": "port1",
+                "group": "in"
+              },
+              {
+                "id": "port2",
+                "group": "out"
+              }
+            ]
+          },
+          "width": 320,
+          "height": 200,
+          "x": 660,
+          "y": 110
+        },
+        {
+          "id": "a0d67f24-966e-43da-8172-2682558763f4",
+          "shape": "custom-vue-node",
+          "ports": {
+            "groups": {
+              "in": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "-2%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              },
+              "out": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "102%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              }
+            },
+            "items": [
+              {
+                "id": "port1",
+                "group": "in"
+              },
+              {
+                "id": "port2",
+                "group": "out"
+              }
+            ]
+          },
+          "width": 320,
+          "height": 200,
+          "x": 1150,
+          "y": 520
+        },
+        {
+          "id": "d8da74ec-35f8-4812-947b-0eb3c886c198",
+          "shape": "custom-vue-node",
+          "ports": {
+            "groups": {
+              "in": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "-2%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              },
+              "out": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "102%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              }
+            },
+            "items": [
+              {
+                "id": "port1",
+                "group": "in"
+              },
+              {
+                "id": "port2",
+                "group": "out"
+              }
+            ]
+          },
+          "width": 320,
+          "height": 200,
+          "x": 1150,
+          "y": 810
+        },
+        {
+          "id": "fc79ff59-13ad-43e9-ba2f-25102aab5daa",
+          "shape": "custom-vue-node",
+          "ports": {
+            "groups": {
+              "in": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "-2%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              },
+              "out": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "102%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              }
+            },
+            "items": [
+              {
+                "id": "port1",
+                "group": "in"
+              },
+              {
+                "id": "port2",
+                "group": "out"
+              }
+            ]
+          },
+          "width": 320,
+          "height": 200,
+          "x": 1640,
+          "y": 100
+        },
+        {
+          "id": "ee187bec-f0d3-4216-9177-cedae44812c7",
+          "shape": "custom-vue-node",
+          "ports": {
+            "groups": {
+              "in": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "-2%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              },
+              "out": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "102%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              }
+            },
+            "items": [
+              {
+                "id": "port1",
+                "group": "in"
+              },
+              {
+                "id": "port2",
+                "group": "out"
+              }
+            ]
+          },
+          "width": 320,
+          "height": 200,
+          "x": 1640,
+          "y": 380
+        },
+        {
+          "id": "c2b07e70-6991-4cd9-98e1-b5c683ff1ae4",
+          "shape": "custom-vue-node",
+          "ports": {
+            "groups": {
+              "in": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "-2%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              },
+              "out": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "102%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              }
+            },
+            "items": [
+              {
+                "id": "port1",
+                "group": "in"
+              },
+              {
+                "id": "port2",
+                "group": "out"
+              }
+            ]
+          },
+          "width": 320,
+          "height": 200,
+          "x": 1640,
+          "y": 660
+        },
+        {
+          "id": "2b76d50f-79b7-4f0e-a43f-46db2332da0f",
+          "shape": "custom-vue-node",
+          "ports": {
+            "groups": {
+              "in": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "-2%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              },
+              "out": {
+                "position": {
+                  "name": "absolute",
+                  "args": {
+                    "x": "102%",
+                    "y": 20
+                  }
+                },
+                "attrs": {
+                  "circle": {
+                    "r": 5,
+                    "magnet": true,
+                    "fill": "#8F9498",
+                    "stroke": "#8F9498"
+                  }
+                }
+              }
+            },
+            "items": [
+              {
+                "id": "port1",
+                "group": "in"
+              },
+              {
+                "id": "port2",
+                "group": "out"
+              }
+            ]
+          },
+          "width": 320,
+          "height": 200,
+          "x": 2130,
+          "y": 240
+        }
+      ],
+      "edgesRelations": [
+        {
+          "id": "9d0d21e9-5c41-4f9d-8844-b423f71e6800",
+          "source": {
+            "cell": "fa140053-07d1-4b13-b411-95df39f88710",
+            "port": "port2"
+          },
+          "target": {
+            "cell": "832ec80d-de90-4613-98c7-594ae43fd990",
+            "port": "port1"
+          },
+          "attr": {}
+        },
+        {
+          "id": "daf093b2-533b-4bdb-a6f2-eea555106423",
+          "source": {
+            "cell": "fa140053-07d1-4b13-b411-95df39f88710",
+            "port": "port2"
+          },
+          "target": {
+            "cell": "a0f69879-94f7-40fb-ace5-4b31319d9035",
+            "port": "port1"
+          },
+          "attr": {}
+        },
+        {
+          "id": "6c058e94-f82c-45d7-af59-a86f35076181",
+          "source": {
+            "cell": "fa140053-07d1-4b13-b411-95df39f88710",
+            "port": "port2"
+          },
+          "target": {
+            "cell": "a0d67f24-966e-43da-8172-2682558763f4",
+            "port": "port1"
+          },
+          "attr": {}
+        },
+        {
+          "id": "25372e70-1213-4747-ab20-1f71debd6628",
+          "source": {
+            "cell": "fa140053-07d1-4b13-b411-95df39f88710",
+            "port": "port2"
+          },
+          "target": {
+            "cell": "d8da74ec-35f8-4812-947b-0eb3c886c198",
+            "port": "port1"
+          },
+          "attr": {}
+        },
+        {
+          "id": "ef41112a-5810-4188-94db-fb9e117923a2",
+          "source": {
+            "cell": "832ec80d-de90-4613-98c7-594ae43fd990",
+            "port": "port2"
+          },
+          "target": {
+            "cell": "fc79ff59-13ad-43e9-ba2f-25102aab5daa",
+            "port": "port1"
+          },
+          "attr": {}
+        },
+        {
+          "id": "dd508365-06b6-4dc6-880c-332bb396a3f3",
+          "source": {
+            "cell": "832ec80d-de90-4613-98c7-594ae43fd990",
+            "port": "port2"
+          },
+          "target": {
+            "cell": "a0d67f24-966e-43da-8172-2682558763f4",
+            "port": "port1"
+          },
+          "attr": {}
+        },
+        {
+          "id": "f3118757-7ba2-422a-a0a4-e11960035698",
+          "source": {
+            "cell": "a0d67f24-966e-43da-8172-2682558763f4",
+            "port": "port2"
+          },
+          "target": {
+            "cell": "ee187bec-f0d3-4216-9177-cedae44812c7",
+            "port": "port1"
+          },
+          "attr": {}
+        },
+        {
+          "id": "22c582d1-dbc7-48af-8fed-63ac8ee6d66a",
+          "source": {
+            "cell": "d8da74ec-35f8-4812-947b-0eb3c886c198",
+            "port": "port2"
+          },
+          "target": {
+            "cell": "ee187bec-f0d3-4216-9177-cedae44812c7",
+            "port": "port1"
+          },
+          "attr": {}
+        },
+        {
+          "id": "a1bf29aa-4f8b-4711-939a-d79305f1c1fe",
+          "source": {
+            "cell": "a0d67f24-966e-43da-8172-2682558763f4",
+            "port": "port2"
+          },
+          "target": {
+            "cell": "c2b07e70-6991-4cd9-98e1-b5c683ff1ae4",
+            "port": "port1"
+          },
+          "attr": {}
+        },
+        {
+          "id": "fe40ee01-2cde-43b4-910c-09b0b98fdc4d",
+          "source": {
+            "cell": "fc79ff59-13ad-43e9-ba2f-25102aab5daa",
+            "port": "port2"
+          },
+          "target": {
+            "cell": "2b76d50f-79b7-4f0e-a43f-46db2332da0f",
+            "port": "port1"
+          },
+          "attr": {}
+        },
+        {
+          "id": "e51b9857-de9e-4b78-a9d1-17729b5f3f6f",
+          "source": {
+            "cell": "ee187bec-f0d3-4216-9177-cedae44812c7",
+            "port": "port2"
+          },
+          "target": {
+            "cell": "2b76d50f-79b7-4f0e-a43f-46db2332da0f",
+            "port": "port1"
+          },
+          "attr": {}
+        }
+      ],
+      "id": 1
+    }
+  ]
+}
