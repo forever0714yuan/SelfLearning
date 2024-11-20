@@ -1,0 +1,17 @@
+// 转义（Escaping）允许你使用任意字符串作为属性或变量值。
+@min768: ~"(min-width: 768px)";
+
+.a {
+  @media @min768 {
+    font-size: 24px;
+  }
+}
+
+// 3.5+ 开始的写法
+@min768-2: (min-width: 768px);
+
+.a {
+  @media @min768-2 {
+    font-size: 16px;
+  }
+}

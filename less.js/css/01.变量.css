@@ -1,0 +1,35 @@
+#header {
+  width: 10px;
+  height: 20px;
+}
+.banner {
+  font-size: 12px;
+  height: 24px;
+  color: #1e1d1f;
+}
+.widget {
+  color: #0ee;
+  background-color: #999;
+}
+body {
+  color: #1e1d1f;
+  background: url("../img/bg.jpg");
+}
+.section .element {
+  color: green;
+}
+.lazy-eval {
+  width: 9%;
+}
+.class {
+  one: 1;
+}
+.class .brass {
+  three: 3;
+}
+.widget {
+  color: #efefef;
+  background-color: blue;
+  color: blue;
+}
+/*# sourceMappingURL=./01.变量.css.map */

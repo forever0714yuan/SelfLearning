@@ -1,0 +1,19 @@
+.component {
+  width: 300px;
+}
+@media (min-width: 768px) {
+  .component {
+    width: 600px;
+  }
+}
+@media (min-width: 768px) and (min-width: 992px) {
+  .component {
+    width: 800px;
+  }
+}
+@media (min-width: 1200px) {
+  .component {
+    width: 1000px;
+  }
+}
+/*# sourceMappingURL=./04.@规则嵌套和冒泡.css.map */
