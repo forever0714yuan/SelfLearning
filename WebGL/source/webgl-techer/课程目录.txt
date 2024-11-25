@@ -1,0 +1,12 @@
+1、webgl概述  webgl起源、webgl优势、webgl学习文档、webgl学习网站。
+2、webgl入门  canvas容器（坐标系） webgl容器（坐标系）webgl 渲染管线 、顶点着色器、片源着色器、attribute、uniform变量
+例子：例子鼠标动态绘制点
+3、webgl入门 绘制基本图形线面、三角形
+例子：绘制多边形
+4、webgl 常用API总结
+5、webgl平移、旋转、缩放
+6、webgl颜色设置
+7、webgl纹理设置
+
+
+

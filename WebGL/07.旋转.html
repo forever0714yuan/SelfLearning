@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>旋转</title>
+  <script>
+    let webgl;
+    const vsString = `
+        attribute vec3 a_position;
+        void main() {
+          gl_Position = vec4(a_position,1.0);
+        }
+      `;
+    const fsString = `
+        void main() {
+          gl_FragColor = vec4(0.0,0.0,1.0,1.0);
+        }
+      `;
+    function init() {
+      initWebgl();
+      initShader();
+      initBuffer();
+      draw();
+    }
+    function initWebgl() {
+      const canvasDom = document.querySelector("#webgl");
+      webgl = canvasDom.getContext("webgl");
+      webgl.viewport(0, 0, canvasDom.clientWidth, canvasDom.clientHeight);
+    }
+    function initShader() {
+      const shaderVS = webgl.createShader(webgl.VERTEX_SHADER);
+      const shaderFS = webgl.createShader(webgl.FRAGMENT_SHADER);
+
+      webgl.shaderSource(shaderVS, vsString);
+      webgl.shaderSource(shaderFS, fsString);
+
+      webgl.compileShader(shaderVS);
+      webgl.compileShader(shaderFS);
+
+      if (!webgl.getShaderParameter(shaderVS, webgl.COMPILE_SHADER)) {
+        let err = webgl.getShaderInfoLog(shaderVS);
+        // console.log(err);
+        alert(err);
+      }
+      if (!webgl.getShaderParameter(shaderFS, webgl.COMPILE_SHADER)) {
+        let err = webgl.getShaderInfoLog(shaderFS);
+        // console.log(err);
+        alert(err);
+      }
+
+      let program = webgl.createProgram();
+      webgl.attachShader(program, shaderFS);
+      webgl.attachShader(program, shaderVS);
+
+      webgl.linkProgram(program);
+      webgl.useProgram(program);
+
+      webgl.program = program;
+    }
+    function initBuffer() {
+      const arr = [0.1, 0.4, 0, 0.1, 0.5, 0, 0.2, 0.4, 0];
+      let floatARR = new Float32Array(arr);
+      let bufferARR = webgl.createBuffer();
+      webgl.bindBuffer(webgl.ARRAY_BUFFER, bufferARR);
+      webgl.bufferData(webgl.ARRAY_BUFFER, floatARR, webgl.STATIC_DRAW);
+
+      let aPosition = webgl.getAttribLocation(webgl.program, "a_position");
+      webgl.enableVertexAttribArray(aPosition);
+      webgl.vertexAttribPointer(aPosition, 3, webgl.FLOAT, false, 0, 0);
+    }
+    function draw() {
+      webgl.clearColor(1, 0, 0, 1.0);
+      webgl.clear(webgl.COLOR_BUFFER_BIT);
+      webgl.drawArrays(webgl.TRIANGGLES, 0, 3);
+    }
+  </script>
+</head>
+<body onload="init()">
+  <canvas id="webgl" width="1024" height="768"></canvas>
+</body>
+</html>

@@ -1,0 +1,13 @@
+@baseWidth: 10px;
+@baseHeight: 10px;
+
+.convert (@width, @height) {
+  width: @width * @baseWidth;
+  height: @height * @baseHeight;
+}
+
+// 使用
+
+.a {
+  .convert(1, 2);
+}

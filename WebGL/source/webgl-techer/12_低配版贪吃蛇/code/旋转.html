@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旋转</title>
+    <script src="glMatrix-0.9.6.min.js"></script>
+    <script>
+        
+        var webgl;
+        var projMat;
+        var vertexstring = `
+        uniform mat4 proj;
+        attribute vec3 a_position;
+        uniform float angle;
+        void main(){
+            gl_Position =vec4(a_position.x*cos(angle)-a_position.y*sin(angle),a_position.x*sin(angle)+a_position.y*cos(angle),0,1.0);
+            // gl_Position =vec4(a_position,1.0);
+        }
+        `;
+        var fragmentstring = `
+        precision mediump float;
+        void main(){
+            gl_FragColor=vec4(0.0,0.0,1.0,1.0);
+        }
+        `;
+        var projMat = mat4.create();
+        function init() {
+            initwebgl();
+            initshader();
+            initbuffer();
+            draw();
+        }
+        function initwebgl() {
+            let webgldiv = document.getElementById('webglcanvans');
+            webgl = webgldiv.getContext('webgl');
+            webgl.viewport(0, 0, webgldiv.clientWidth, webgldiv.clientHeight);
+            mat4.ortho(0, webgldiv.clientWidth, webgldiv.clientHeight, 0, -1, 1, projMat);
+
+        }
+        function initshader() {
+            let shderVERTEX = webgl.createShader(webgl.VERTEX_SHADER);
+            let shderFRAGMENT = webgl.createShader(webgl.FRAGMENT_SHADER);
+            webgl.shaderSource(shderVERTEX, vertexstring);
+            webgl.shaderSource(shderFRAGMENT, fragmentstring);
+
+            webgl.compileShader(shderVERTEX);
+            webgl.compileShader(shderFRAGMENT);
+            if (!webgl.getShaderParameter(shderVERTEX, webgl.COMPILE_STATUS)) {
+                var err = webgl.getShaderInfoLog(shderVERTEX);
+                alert(err);
+                return;
+            }
+            if (!webgl.getShaderParameter(shderFRAGMENT, webgl.COMPILE_STATUS)) {
+                var err = webgl.getShaderInfoLog(shderFRAGMENT);
+                alert(err);
+                return;
+            }
+            let program = webgl.createProgram();
+            webgl.attachShader(program, shderVERTEX);
+            webgl.attachShader(program, shderFRAGMENT);
+
+            webgl.linkProgram(program);
+            webgl.useProgram(program);
+            webgl.program = program;
+        }
+        function initbuffer() {
+            let arr = [
+                0.100, 0.400, 0,    
+                0.100, 0.500, 0, 
+                0.200, 0.400, 0,  ]
+            let floatArr = new Float32Array(arr);
+            let bufferArr = webgl.createBuffer()
+            webgl.bindBuffer(webgl.ARRAY_BUFFER,bufferArr)
+            webgl.bufferData(webgl.ARRAY_BUFFER,floatArr,webgl.STATIC_DRAW);
+            let a_position = webgl.getAttribLocation(webgl.program,"a_position");
+            webgl.enableVertexAttribArray(a_position);
+            webgl.vertexAttribPointer(a_position,3,webgl.FLOAT,false,3*4,0);
+
+            let u_proj = webgl.getUniformLocation(webgl.program,"proj");
+            webgl.uniformMatrix4fv(u_proj, false,projMat);
+
+            let u_angle = webgl.getUniformLocation(webgl.program,"angle");
+            webgl.uniform1f(u_angle,0.5);
+            debugger
+        }
+        function draw() {
+            debugger
+                    webgl.clearColor(1.0,0.0,0.0,1.0);
+                    webgl.clear(webgl.COLOR_BUFFER_BIT);
+                    webgl.enable(webgl.DEPTH_TEST);
+                    webgl.drawArrays(webgl.TRIANGLES,0,3)
+        }
+    </script>
+</head>
+
+<body onload="init()">
+    <canvas id="webglcanvans" width="800" height="1000"></canvas>
+</body>
+
+</html>

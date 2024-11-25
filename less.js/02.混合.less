@@ -1,0 +1,106 @@
+// 混合（Mixin）是一种将一组属性从一个规则集包含（或混入）到另一个规则集的方法。
+.boder-style() {
+  border-top: 1px solid #1d1e1f;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.a {
+  color: #e3e4e5;
+  .boder-style();
+}
+
+// 1.如果要创建一个 mixin，但不希望该 mixin 出现在 CSS 输出中，请在 mixin 定义后加上括号。
+.my-mixin {
+  color: black;
+}
+.my-other-mixin() {
+  background: white;
+}
+.class {
+  .my-mixin();
+  .my-other-mixin();
+}
+//2.Mixins 不仅可以包含属性，还可以包含选择器
+.my-hover-mixin() {
+  &:hover {
+    border: 1px solid red;
+  }
+}
+button {
+  .my-hover-mixin();
+}
+
+// 3.命名空间 如果要在更复杂的选择器中混合属性，可以堆叠多个 id 或类。 相当于写对象一样
+#outer() {
+  .inner {
+    color: red;
+  }
+}
+
+.c {
+  #outer.inner();
+}
+// 4.条件命名空间 如果命名空间具有守卫，则仅当守卫条件返回 true 时才使用由其定义的 mixins。命名空间保护的评估与 mixin 上的保护完全相同，因此以下两个 mixin 的工作方式相同：
+
+// 5.mixin中的！important关键字
+.foo (@bg: #f5f5f5, @color: #900) {
+  background: @bg;
+  color: @color;
+}
+.unimportant {
+  .foo();
+}
+.important {
+  .foo() !important;
+}
+
+// 6.参数混合
+// 1.Mixins 也可以接受参数，这些参数是在混合时传递给选择器块的变量。
+.border-radius(@radius:5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+#header {
+  .border-radius(4px);
+}
+.button {
+  .border-radius();
+}
+// 2. 参数混合可以为其参数设置默认值
+.border-radius(@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+
+#header {
+  .border-radius();
+}
+// 7. 参数分隔符
+// 混合守卫
+.mixin1(@width) when not(@width >= 50px) {
+  background-color: black;
+}
+
+.mixin1(@width) {
+  width: @width;
+}
+
+.box {
+  .mixin1(50px);
+}
+
+.father() {
+  .children1 {
+    height: 180px;
+  }
+
+  .children2 {
+    height: 178px;
+  }
+}
+
+.xiaoming {
+  .father.children1();
+}

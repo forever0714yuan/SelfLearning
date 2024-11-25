@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拖放</title>
+    <style>
+        .box {
+            position: relative;
+            display: inline-block;
+            height: 100px;
+            width: 100px;
+            border-radius: 12px;
+            border: 2px solid #333;
+        }
+        .box .image {
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            background-image: url(assets/4.jpg);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="image" draggable="true"></div>
+    </div>
+    <div class="box"></div>
+    <script>
+        const boxs = document.querySelectorAll('.box');
+        const image = document.querySelector('.image');
+
+        boxs.forEach(box => {
+            box.addEventListener('dragover', e => {
+               e.preventDefault()
+            });
+
+            box.addEventListener('drop', e => {
+                box.appendChild(image)
+            });
+        })
+    </script>
+</body>
+</html>

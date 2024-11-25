@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var webgl;
+        var angley = 0;
+        var anglex = 0;
+        var vsString = `
+   attribute vec3 a_position;
+   uniform float anglex;
+   uniform float angley;
+   void main(){
+       gl_Position = vec4(a_position.x+anglex,a_position.y+angley,0,1.0);
+   }
+   `;
+        var fsString = `
+   precision mediump float;
+   void main(){
+       gl_FragColor =  vec4(0.0,0.0,1.0,1.0);
+   }
+   `;
+
+        function init() {
+            initWebgl();
+            initShader();
+            initBuffer();
+            initEvent();
+            draw();
+
+        }
+
+        function initWebgl() {
+            let webgldiv = document.getElementById("webgl_canvas");
+            webgl = webgldiv.getContext("webgl");
+            webgl.viewport(0, 0, webgldiv.clientWidth, webgldiv.clientHeight);
+        }
+        function initShader() {
+            let shaderVS = webgl.createShader(webgl.VERTEX_SHADER);
+            let shaderFS = webgl.createShader(webgl.FRAGMENT_SHADER);
+            webgl.shaderSource(shaderVS, vsString);
+            webgl.shaderSource(shaderFS, fsString);
+            webgl.compileShader(shaderVS);
+            webgl.compileShader(shaderFS);
+            if (!webgl.getShaderParameter(shaderVS, webgl.COMPILE_STATUS)) {
+                let err = webgl.getShaderInfoLog(shaderVS);
+                alert(err)
+                return
+            }
+            if (!webgl.getShaderParameter(shaderFS, webgl.COMPILE_STATUS)) {
+                let err = webgl.getShaderInfoLog(shaderFS);
+                alert(err)
+                return
+            }
+
+            let program = webgl.createProgram();
+            webgl.attachShader(program, shaderVS);
+            webgl.attachShader(program, shaderFS);
+            webgl.linkProgram(program);
+            webgl.useProgram(program);
+            webgl.program = program;
+        }
+       
+
+        function initBuffer() {
+            let arr = [
+                0.1, 0.4, 0,
+                0.1, 0.5, 0,
+                0.2, 0.4, 0
+
+            ];
+            let floatArr = new Float32Array(arr);
+            let buffer = webgl.createBuffer();
+            webgl.bindBuffer(webgl.ARRAY_BUFFER, buffer);
+            webgl.bufferData(webgl.ARRAY_BUFFER, floatArr, webgl.STATIC_DRAW);
+
+            let a_Position = webgl.getAttribLocation(webgl.program, "a_position");
+            webgl.vertexAttribPointer(a_Position, 3, webgl.FLOAT, false, 0, 0);
+            webgl.enableVertexAttribArray(a_Position);
+            let anglexShader = webgl.getUniformLocation(webgl.program, "anglex");
+            let angleyShader = webgl.getUniformLocation(webgl.program, "angley");
+            webgl.uniform1f(anglexShader, anglex);
+            webgl.uniform1f(angleyShader, angley);
+        }
+        function initEvent() {
+            document.onkeydown = handleKeyDown;
+        }
+        function handleKeyDown(event) {
+         
+            if (String.fromCharCode(event.keyCode) == 'W') {
+                angley += 0.01;
+            }
+            else if (String.fromCharCode(event.keyCode) == 'S') {
+                angley -= 0.01;
+            }
+            else if (String.fromCharCode(event.keyCode) == 'A') {
+                anglex -= 0.01;
+            }
+            else if (String.fromCharCode(event.keyCode) == 'D') {
+                anglex += 0.01;
+            }
+            
+        }
+        function draw() {
+            webgl.clearColor(1.0, 0.0, 0.0, 1.0);
+            webgl.clear(webgl.COLOR_BUFFER_BIT);
+            webgl.drawArrays(webgl.TRIANGLES, 0, 3);
+        }
+      
+        // window.requestAnimationFrame = (function () {
+        //     // return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || winodw.oRequestAnimationFrame ||
+        //     //     window.msRequestAnimationFrame || function (callback, element) {
+        //     //         window.setTimeout(callback, 1000 / 60)
+        //     //     }
+        // })()
+        function onLoad() {
+            init()
+            window.requestAnimationFrame(onLoad)
+        }
+    </script>
+</head>
+
+<body onload="onLoad()">
+    <canvas id="webgl_canvas" width="500" height="500"></canvas>
+</body>
+
+</html>

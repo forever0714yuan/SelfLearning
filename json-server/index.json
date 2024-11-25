@@ -1,0 +1,68 @@
+{
+    "posts": [
+        {
+            "id": 1,
+            "title": "文章111",
+            "author": "张三"
+        },
+        {
+            "id": 2,
+            "title": "文章222",
+            "author": "李四"
+        }
+    ],
+    "comments": [
+        {
+            "id": 1,
+            "body": "some comment 1",
+            "postId": 1
+        },
+        {
+            "id": 2,
+            "body": "some comment 2",
+            "postId": 1
+        },
+        {
+            "id": 3,
+            "body": "some comment 3",
+            "postId": 2
+        }
+    ],
+    "profile": {
+        "name": "typicode"
+    },
+    "authors": [
+        {
+            "id": 1,
+            "name": "zhangsan",
+            "age": 18,
+            "comments": [
+                {
+                    "id": 1,
+                    "body": "some comment 1",
+                    "postId": 1
+                },
+                {
+                    "id": 2,
+                    "body": "some comment 2",
+                    "postId": 1
+                },
+                {
+                    "id": 3,
+                    "body": "some comment 3",
+                    "postId": 2
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "lisi",
+            "age": 21
+        },
+        {
+            "id": 3,
+            "name": "wangwu",
+            "age": 24
+        }
+    ]
+}
