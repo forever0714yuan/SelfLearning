@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="main">
+            <div class="time">
+                倒计时：<span>30</span>s
+            </div>
+        </div>
+        <div class="setting">
+            <div class="title mgb10">设置面板</div>
+            <div class="difficulty mgb10">
+                <span>难度：</span>
+                <input type="radio" name="difficulty" value="1" checked>简单
+                <input type="radio" name="difficulty" value="2">很难
+                <input type="radio" name="difficulty" value="3">超级难
+            </div>
+            <div class="rule mgb10">游戏说明：选择难度后点击开始，倒计时30秒内会掉落粽子，点击粽子可得分，简单得10分，很难得20分，超级难得30，倒计时结束后游戏结束。</div>
+            <div class="btn">开始游戏</div>
+            <div class="result">总分：<span>0</span></div>
+        </div>
+    </div>
+
+
+    <script src="./index.js"></script>
+</body>
+
+</html>

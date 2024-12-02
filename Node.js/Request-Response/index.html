@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // fetch('http://localhost:3000/info')
+        //     .then(response => {
+        //         const header = response.headers;
+        //         console.log(header.get('xmzd'))
+        //         return response.json()
+        //     })
+        //     .then(data => console.log(data))
+
+
+
+        // cors 的Content-type默认支持 application/x-www-form-urlencoded | multipart/form-data | text/plain
+        // fetch('http://localhost:3000/info', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         name: '张三',
+        //         age: 18
+        //     })
+        // })
+        //     .then(response => response.json())
+        //     .then(data => console.log(data))
+
+
+        const sse = new EventSource('http://localhost:3000/sse')
+
+        sse.addEventListener("message", (event) => {
+            console.log(event.data)
+        })
+        sse.addEventListener("open", (event) => {
+            console.log("连接成功")
+        })
+        sse.addEventListener("error", (event) => {
+            console.log("连接失败")
+        })
+    </script>
+</body>
+
+</html>
