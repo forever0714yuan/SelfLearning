@@ -20,12 +20,25 @@ export class UserService {
 
   public async createUser(user: UserDto) {
     const userDto = plainToClass(UserDto, user);
-
     const errors = await validate(userDto);
+
     if (errors.length > 0) {
       return errors;
     }
-    console.log(userDto);
+
+    const findRes = await this.PrismaDB.prisma.user.findMany({
+      where: {
+        email: user.email,
+      },
+    });
+
+    if (findRes.length > 0) {
+      return {
+        code: "-1",
+        message: "Email 已经存在",
+        data: [],
+      };
+    }
 
     const res = await this.PrismaDB.prisma.user.create({
       data: userDto,
