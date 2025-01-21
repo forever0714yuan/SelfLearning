@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="file" type="file" name="file"> <!--用来上传文件-->
+</body>
+<script>
+    const file = document.getElementById('file')
+
+    // 将文件进行分片
+    const chunkFun = (file, chunkSize = 1024 * 1024 * 10) => {
+        const chunks = []
+        for (let index = 0; index < file.size; index += chunkSize) {
+            chunks.push(file.slice(index, index + chunkSize))
+        }
+        return chunks
+    }
+
+    const uploadFile = (chunks) => {
+        const List = []
+        for (let index = 0; index < chunks.length; index++) {
+            const formData = new FormData()
+            formData.append('index', index)
+            formData.append("fileName", file.name)
+            formData.append('file', chunks[index])
+            List.push(fetch('http://localhost:3000/upload', {
+                method: 'POST',
+                body: formData
+            }))
+        }
+
+
+        Promise.all(List).then(res => {
+            console.log(res)
+        })
+    }
+
+    file.addEventListener('change', function (event) {
+        // 获取文件信息
+        const file = event.target.files[0]
+
+        const chunks = chunkFun(file)
+
+        uploadFile(chunks)
+    })
+</script>
+
+</html>
