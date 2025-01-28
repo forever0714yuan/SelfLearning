@@ -14,6 +14,8 @@ redis.on("message", (channel, message) => {
 });
 
 redis2.publish("mychannel", "Hello, Redis!");
+// redis 设置过期时间
+redis.setex("key", 10, "value");
 
 // redis.setex("key", 10, "value");
 // redis.set("name", "value");
