@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sdl</title>
 </head>
+
 <body>
     <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.19.0/js/md5.min.js"></script>
     <script>
-        console.log(md5('123456'));
+        const ws = new WebSocket('ws://192.168.10.67:3000');
+
+        const createBrowserFingerprint = () => {
+            const canvas = document.createElement('canvas')
+            const ctx = canvas.getContext('2d')
+            ctx.fillStyle = 'red'
+            ctx.fillRect(0, 0, 1, 1)
+            return md5(canvas.toDataURL())
+        }
+
+
+        ws.addEventListener('open', () => {
+            ws.send(JSON.stringify({
+                action: 'login', //动作登录
+                id: '1', //用户ID
+                fingerprint: createBrowserFingerprint() //浏览器指纹
+            }))
+        })
+
+
+        ws.addEventListener("message", (message) => {
+            const data = JSON.parse(message.data)
+            if (data.action === 'logout') {
+                alert(data.message) //监听到挤下线操作提示弹框
+            }
+        })
     </script>
 </body>
+
 </html>
