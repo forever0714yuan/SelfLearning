@@ -1,0 +1,20 @@
+.hello {
+  color: #14b859;
+}
+
+.block-bg {
+  background-image: url(../images/webpack-logo.svg);
+}
+
+@font-face {
+  font-family: "iconfont";
+  src: url("../images/iconfont.ttf") format("truetype");
+}
+
+.icon {
+  font-family: "iconfont" !important;
+  font-size: 30px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

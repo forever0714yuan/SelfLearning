@@ -1,0 +1,477 @@
+body {
+  margin: 0;
+}
+.el-dialog__headerbtn .el-dialog__close{
+  font-size: 2em;
+}
+.el-notification__group {
+  min-width: 200px !important;
+  min-height: 100px;
+}
+
+.el-notification.left {
+  /* width: 400px; */
+  min-height: 100px;
+  height: 200px;
+  max-height: 350px;
+  /* display:table-cell;height:70%; */
+
+  overflow-y: auto;
+  top: 50% !important;
+  left: 50% !important;
+  /* bottom: 40% !important; */
+  transform: translate(-50%, -50%) !important;
+  animation: notify 0.5s linear 1;
+}
+.el-notification__content p {
+  word-break: break-word;
+  word-wrap: normal;
+  text-align: -webkit-left;
+  font-size: 20px;
+}
+.el-.el-notification__title {
+  font-size: 20px;
+}
+@keyframes notify {
+  from {
+    top: calc(50% - 300px);
+  }
+  to {
+    top: 50%;
+  }
+}
+.custom-tree-node {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  color: #fff;
+  padding-right: 5px;
+}
+
+.custom-tree-node .el-icon-more {
+  color: #3fdaff;
+}
+
+.text {
+  color: #ffffff;
+}
+
+/* dialog内容居左 */
+.el-dialog {
+  text-align: left;
+}
+
+/* 全边框 */
+.boxShadow_all {
+  border: 1px solid #49fbfd;
+}
+
+/* 圆角 */
+.border-rad {
+  border-radius: 5px;
+}
+
+.el-submenu__icon-arrow {
+  right: 0px;
+  margin-top: -5px;
+}
+
+.el-pagination {
+  padding: 10px 5px;
+}
+
+/* 按钮样式 */
+.button-sty {
+  position: absolute;
+  /* top: 0px; */
+  right: 20px;
+}
+.button-midd {
+  position: absolute;
+  /* top: 0px; */
+  left: 450px;
+}
+
+.button-first-other {
+  /* background-color: #0a2137;
+  border: solid 1px #1ebcff !important;
+  border-radius: 2px !important; */
+  /* background: url(../assets/button-nomal.png) center center no-repeat;
+  background-size: 100% 100%; */
+  background-color: #0b1723;
+  /* background-color: #071524; */
+  border-radius: 4px;
+  border: solid 1px #23abea;
+  font-size: 16px !important;
+  color: #8fd3f6;
+}
+
+.button-first-other:hover {
+  border-radius: 4px;
+  /* background-color: #0a2137; */
+  background-color: #071524;
+  color: #c9f9ff;
+  border: solid 1px #1ebcff;
+}
+
+.button-first-other:focus {
+  /* background-color: #1461aa; */
+  background-color: #071524;
+  color: #c9f9ff;
+  border: solid 1px #1ebcff;
+}
+/* .el-button--primary {
+  background: url(../assets/button-nomal.png) center center no-repeat;
+  background-size: 100% 100%;
+  background-color: #071524;
+}
+.el-button--primary:hover {
+  background: url(../assets/button-nomal.png) center center no-repeat;
+  background-size: 100% 100%;
+  background-color: #071524;
+}
+.el-button--primary:focus {
+  background: url(../assets/button-select.png) center center no-repeat;
+  background-size: 100% 100%;
+  background-color: #071524;
+} */
+
+.button-nomal-left {
+  width: 147px;
+  height: 34px;
+  /* line-height: 34px; */
+  letter-spacing: 2px;
+  background: url(../assets/button-nomal-left.png) center center no-repeat;
+  background-size: 100% 100%;
+  border-radius: 0;
+  color: #fff;
+}
+.button-nomal-left:hover {
+  background: url(../assets/button-select.png) center center no-repeat;
+  width: 147px;
+  height: 34px;
+  letter-spacing: 2px;
+  /* background: url(../assets/button-nomal-left.png) center center no-repeat; */
+  background-size: 100% 100%;
+  border-radius: 0;
+}
+.button-nomal-left:focus {
+  width: 147px;
+  height: 34px;
+  letter-spacing: 2px;
+  background: url(../assets/button-select.png) center center no-repeat;
+  background-size: 100% 100%;
+  border-radius: 0;
+  color: #fff;
+}
+
+.button-nomal {
+  width: 147px;
+  height: 34px;
+  letter-spacing: 2px;
+  background: url(../assets/button-nomal.png) center center no-repeat;
+  background-size: 100% 100%;
+  border-radius: 0;
+  color: #fff;
+}
+.button-nomal:hover {
+  width: 147px;
+  height: 34px;
+  letter-spacing: 2px;
+  background: url(../assets/button-select.png) center center no-repeat;
+  background-size: 100% 100%;
+  border-radius: 0;
+}
+.button-nomal:focus {
+  width: 147px;
+  height: 34px;
+  letter-spacing: 2px;
+  background: url(../assets/button-select.png) center center no-repeat;
+  background-size: 100% 100%;
+  border-radius: 0;
+  color: #fff;
+}
+
+/* 内容样式 */
+.content-sty {
+  padding: 20px 20px;
+}
+
+.Lcontent-sty {
+  width: 260px;
+  height: calc(100% - 48px);
+  background-color: rgba(29, 59, 90, 0.1);
+  /* opacity: 0.6; */
+  border: 1px solid rgba(38, 207, 255, 0.1);
+  padding-left: 20px;
+}
+
+.Lcontent-title {
+  width: 88%;
+  height: 43px;
+  line-height: 43px;
+  text-align: left;
+  /* font-weight: bold; */
+  color: #fff;
+  font-size: 18px;
+  padding-left: 20px;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(
+      90deg,
+      #07e9ff,
+      rgba(7, 233, 255, 0.5),
+      rgba(7, 233, 255, 0)
+    )
+    2;
+}
+
+/* 树样式 */
+.el-tree-node__label {
+  font-size: 15px;
+  color: #fff;
+}
+
+.el-tree-node > .el-tree-node__content {
+  height: 43px;
+}
+
+.el-tree-node .el-tree-node__expand-icon {
+  color: #3fdaff;
+}
+
+.el-tree-node .el-tree-node__expand-icon.is-leaf {
+  color: transparent;
+}
+
+.tree-sty {
+  background-color: rgba(29, 59, 90, 0.1);
+  opacity: 1;
+  color: #6f9dc4;
+}
+.tree-sty .el-dropdown {
+  color: #6f9dc4;
+  font-size: 20px;
+}
+.el-tree-node:focus > .el-tree-node__content {
+  background-color: rgba(56, 185, 255, 0.2);
+  color: #ffffff;
+}
+
+.el-tree-node:focus .el-tree-node__expand-icon {
+  color: #ffffff;
+}
+
+.el-tree-node:focus .el-tree-node__expand-icon.is-leaf {
+  color: transparent;
+}
+
+.el-tree-node:focus > .el-tree-node__content .el-icon-more {
+  color: #ffffff;
+}
+
+.el-tree-node__content:hover {
+  background-color: rgba(56, 185, 255, 0.2);
+  color: #ffffff;
+}
+
+.el-checkbox__input.is-disabled.is-checked .el-checkbox__inner {
+  background-color: #0365d2;
+  border-color: #8fd3f6;
+}
+.el-checkbox__inner:hover {
+  border: 1px solid #8fd3f6;
+}
+
+/* 下拉框样式 */
+.el-select-dropdown__list {
+  background-color: #083654;
+  
+  padding: 0px 0px;
+}
+.el-select-dropdown__item {
+  color: #ffffff;
+  background-color: #083654;
+  /* border-radius: 4px; */
+  
+}
+.el-select .el-input.is-focus .el-input__inner {
+  border-color: #00856c;
+}
+.el-select .el-input__inner:focus {
+  border-color: #00856c;
+}
+.el-select-dropdown__item.selected {
+  color: #00856c;
+}
+.el-select-dropdown__item.hover,
+.el-select-dropdown__item:hover {
+  color: #05e7de;
+    background-color: #284761;
+}
+
+/* 穿梭框样式 */
+.el-transfer__buttons {
+  padding: 0px 0px;
+}
+.el-transfer-panel .el-transfer-panel__header .el-checkbox .el-checkbox__label {
+  font-size: 13px;
+  color: #d8d8d8;
+}
+.el-transfer-panel .el-transfer-panel__header {
+  background: #385f80;
+}
+.el-transfer-panel {
+  border: 1px solid #49fbfd;
+  border-radius: 3px;
+  background-color: #0b1723;
+}
+
+.el-transfer-panel__item.el-checkbox:hover {
+  color: #00856c;
+}
+.el-checkbox__input.is-checked + .el-checkbox__label {
+  color: #0365d2;
+}
+
+.el-checkbox__input .el-checkbox__inner {
+  background-color: #3c5a76;
+}
+.el-checkbox__input.is-checked .el-checkbox__inner,
+.el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  background-color: #0365d2;
+  border-color: #8fd3f6;
+}
+/* 单选框样式 */
+.el-radio__input.is-checked + .el-radio__label {
+  color: #8ecbff;
+}
+.el-radio__input.is-checked .el-radio__inner {
+  border-color: #0365d2;
+  background: #0365d2;
+}
+.el-radio__inner:hover {
+  border-color: #0365d2;
+}
+
+.el-select-dropdown.is-multiple .el-select-dropdown__item.selected {
+  color: #00856c;
+  background-color: #fff;
+}
+.el-transfer-panel__item.el-checkbox {
+  color: #b4b4b4;
+}
+.el-button--success.is-disabled,
+.el-button--success.is-disabled:active,
+.el-button--success.is-disabled:focus,
+.el-button--success.is-disabled:hover {
+  background: url(../assets/button-grey.png) center center no-repeat;
+  background-size: 100% 100%;
+  color: #fff;
+  background-color: #60635e;
+  border-color: #1ebcff;
+}
+.el-button--info.is-disabled,
+.el-button--info.is-disabled:active,
+.el-button--info.is-disabled:focus,
+.el-button--info.is-disabled:hover {
+  background: url(../assets/button-grey.png) center center no-repeat;
+  background-size: 100% 100%;
+  color: #fff;
+  background-color: #525252;
+  border-color: #1ebcff;
+}
+.el-button--primary.is-disabled,
+.el-button--primary.is-disabled:active,
+.el-button--primary.is-disabled:focus,
+.el-button--primary.is-disabled:hover {
+  background: url(../assets/button-grey.png) center center no-repeat;
+  background-size: 100% 100%;
+  color: #fff;
+  background-color: #525252;
+  border-color: #1ebcff;
+}
+
+.el-button.is-disabled,
+.el-button.is-disabled:focus,
+.el-button.is-disabled:hover {
+  background: url(../assets/button-grey.png) center center no-repeat;
+  background-size: 100% 100%;
+  background-color: #525252;
+}
+
+.el-message-box__wrapper {
+  position: fixed;
+  top: -157px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.el-textarea .el-input__count {
+  color: #909399;
+  background: rgb(72, 72, 72, 0);
+  position: absolute;
+  font-size: 12px;
+  right: 20px;
+}
+
+.el-loading-mask {
+  background-color: rgb(255 255 255 / 0%);
+}
+.el-loading-spinner .path {
+  stroke: #00856c;
+}
+
+.el-loading-spinner {
+  top: 35%;
+}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: #49fbfd00;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  background-color: #49fbfd00;
+}
+::-webkit-resizer {
+  background-color: #082137;
+}
+::-webkit-scrollbar-corner {
+  background-color: #082137;
+}
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #284761;
+}
+
+.el-picker-panel {
+  background-color: #284761;
+  color: #fff;
+}
+
+.el-picker-panel .el-picker-panel__footer {
+  background-color: #284761;
+  color: #fff;
+}
+
+.el-picker-panel .el-picker-panel__icon-btn,
+.el-picker-panel .el-date-table th,
+.el-picker-panel .el-date-picker__header-label {
+  color: #fff;
+}
+
+.el-picker-panel .el-picker-panel__link-btn.el-button--default {
+  background-color: #498ce4;
+  color: #fff;
+}

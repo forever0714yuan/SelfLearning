@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>绘制多个三角形</title>
+    <script src="./glMatrix-0.9.6.min.js"></script>
+    <script>
+      let webgl;
+      //   let projMat4;
+      let projMat4 = mat4.create();
+      // 顶点照着器shader
+      let vertexString = `
+        attribute vec4 a_position;
+        uniform     mat4    proj;
+        void main(void){
+            gl_Position =proj *  a_position;
+            gl_PointSize=60.0;
+        }
+        `;
+      //片元着色器
+      let fragementString = `
+        void main(void){
+          gl_FragColor = vec4(1.0,0,1.0,1.0);
+        }
+        `;
+      //初始化入口
+      function init() {
+        initWebGL();
+        initShader();
+        initBuffer();
+        draw();
+      }
+      //初始化webgl
+      function initWebGL() {
+        // 1.获取canvas 的dom
+        let webglDom = document.querySelector("#webglCanvas");
+        // console.dir(webglDom);
+        // 2.获取webgl的上下文
+        webgl = webglDom.getContext("webgl");
+        // 3.设置webgl的视觉区域
+        webgl.viewport(0, 0, webglDom.clientWidth, webglDom.clientHeight);
+        // 4.设置webgl的投影坐标系
+        mat4.ortho(0, webglDom.clientWidth, webglDom.clientHeight, 0, -1, 1, projMat4);
+      }
+      // shader 计算机GPU调用的api
+      function initShader() {
+        // 1.定义shader容器
+        const vssgader = webgl.createShader(webgl.VERTEX_SHADER);
+        const fssagder = webgl.createShader(webgl.FRAGMENT_SHADER);
+        // 2.将shader容器和文本进行绑定
+        webgl.shaderSource(vssgader, vertexString);
+        webgl.shaderSource(fssagder, fragementString);
+        // 3.webgl的编译
+        webgl.compileShader(vssgader);
+        webgl.compileShader(fssagder);
+        // 4.创建wengl项目容器 并与shader进行绑定
+        let program = webgl.createProgram();
+        webgl.attachShader(program, vssgader);
+        webgl.attachShader(program, fssagder);
+        // 5.告诉webgl与创建的项目容器进行连接
+        webgl.linkProgram(program);
+        // 6.使用项目容器
+        webgl.useProgram(program);
+        // 7.将构建的项目绑定到webgl中
+        webgl.program = program;
+      }
+      // 数据缓冲区初始化
+      function initBuffer() {
+        // 1.准备数组
+        const arr = [
+          100.0, 100.0, 0.0, 1.0, 200.0, 200.0, 0.0, 1.0, 300.0, 200.0, 0.0, 1.0, 400.0, 600.0, 0.0, 1.0, 500.0, 700.0,
+          0.0, 1.0,
+        ];
+        const pointPosition = new Float32Array(arr);
+        // 2.获取shader中的变量 项目 变量名称
+        const aPosition = webgl.getAttribLocation(webgl.program, "a_position");
+        // 3.创建缓冲区
+        const lineBuffer = webgl.createBuffer();
+        // 4.绑定缓冲区
+        webgl.bindBuffer(webgl.ARRAY_BUFFER, lineBuffer);
+        webgl.bufferData(webgl.ARRAY_BUFFER, pointPosition, webgl.STATIC_DRAW);
+        // 5.使用缓冲区
+        webgl.enableVertexAttribArray(aPosition);
+        // 6.赋值给shader
+        webgl.vertexAttribPointer(aPosition, 4, webgl.FLOAT, false, 4 * 4, 0 * 4);
+
+        // 0.索引数组
+        let arrIndex = [0, 1, 2, 0, 3, 4];
+        // 1.创建索引数组
+        let indexArr = new Uint16Array(arrIndex);
+        // 2.创建索引缓冲区
+        const indexBuffer = webgl.createBuffer();
+        // 3.绑定索引
+        webgl.bindBuffer(webgl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+        // 4.绑定数值
+        webgl.bufferData(webgl.ELEMENT_ARRAY_BUFFER, indexArr, webgl.STATIC_DRAW);
+
+        const uniforproj = webgl.getUniformLocation(webgl.program, "proj");
+        webgl.uniformMatrix4fv(uniforproj, false, projMat4);
+      }
+      // 绘制图形
+      function draw() {
+        // 1.冲刷颜色
+        webgl.clearColor(0.0, 0.0, 0.0, 1.0);
+        // 2.检测颜色
+        webgl.clear(webgl.COLOR_BUFFER_BIT);
+        // 3.绘制 三角形  数组起始位置，点数量
+        // webgl.drawArrays(webgl.TRIANGLES, 0, 3); 直接绘制三角形
+        // webgl.drawArrays(webgl.TRIANGLE_STRIP, 0, 4); 绘制三角形，如果是逆时针，那么就需要和第一个三角形一样是逆时针的。第一个三角形的最后一个点就是开始点
+        webgl.drawElements(webgl.TRIANGLES, 6, webgl.UNSIGNED_SHORT, 0); // 第一个三角形的最后一条边和第四个点形成三角形
+      }
+    </script>
+  </head>
+
+  <body onload="init()">
+    <canvas id="webglCanvas" width="1024" height="768"></canvas>
+  </body>
+</html>
